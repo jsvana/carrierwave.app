@@ -1,0 +1,41 @@
+baseURL = 'https://carrierwave.app/manual/'
+languageCode = 'en-us'
+title = 'Carrier Wave Manual'
+theme = 'carrier-wave'
+
+[params]
+  description = 'Documentation for Carrier Wave - iOS QSO logging for amateur radio'
+  appStoreURL = 'https://apps.apple.com/app/carrier-wave'
+  changelogURL = 'https://github.com/jsvana/carrier_wave/blob/main/CHANGELOG.md'
+
+[markup]
+  [markup.highlight]
+    style = 'monokai'
+    lineNos = false
+    noClasses = false
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[menu]
+  [[menu.main]]
+    name = 'Quick Start'
+    url = '/quickstart/'
+    weight = 1
+  [[menu.main]]
+    name = 'Guide'
+    url = '/guide/'
+    weight = 2
+  [[menu.main]]
+    name = 'Reference'
+    url = '/reference/'
+    weight = 3
+  [[menu.main]]
+    name = 'Glossary'
+    url = '/glossary/'
+    weight = 4
+
+[outputs]
+  home = ['HTML']
+  section = ['HTML']
+  page = ['HTML']

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}" data-theme="dark">
+<head>
+  {{- partial "head.html" . -}}
+</head>
+<body>
+  {{- partial "header.html" . -}}
+
+  <div class="site-wrapper">
+    {{- partial "sidebar.html" . -}}
+
+    <main class="main-content">
+      {{- block "main" . }}{{- end }}
+    </main>
+
+    {{- if .Params.showToc }}
+    {{- partial "toc.html" . -}}
+    {{- end }}
+  </div>
+
+  {{- partial "footer.html" . -}}
+
+  <script src="{{ "js/theme-toggle.js" | relURL }}"></script>
+  <script src="{{ "js/glossary.js" | relURL }}"></script>
+</body>
+</html>
