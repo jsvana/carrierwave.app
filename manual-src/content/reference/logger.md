@@ -191,6 +191,8 @@ Type commands in the callsign field to control your session:
 | `SPOT QRT` | Post spot with "QRT" comment |
 | `SPOT QSY 14.062` | Post spot with custom comment |
 
+**Alias:** `QRT` for `SPOT QRT`.
+
 ### Spot Monitoring
 
 | Command | Description |
@@ -208,6 +210,8 @@ Type commands in the callsign field to control your session:
 | `WEATHER` | Show weather conditions from NOAA |
 | `MAP` | Show session {{< term "QSO" >}}s on a map |
 | `WEBSDR` | Open WebSDR receiver picker or connect to last receiver |
+
+**Aliases:** `SDR`, `REC`, `RECORD`, `SWL` also open the WebSDR receiver.
 
 ### Session Management
 
@@ -227,6 +231,38 @@ Type commands in the callsign field to control your session:
 | `MANUAL` | Open CW Field Guide radio manual for current radio |
 
 **Alias:** `CL` for `CHECKLIST`.
+
+### Help
+
+| Command | Description |
+|---------|-------------|
+| `HELP` | Show list of all available commands |
+
+## Command Quick Reference
+
+All commands and their aliases in one place:
+
+| Command | Aliases | Description |
+|---------|---------|-------------|
+| `14.060` | | Set frequency |
+| `BAND` | | Open band picker |
+| `MODE CW` | `CW`, `SSB`, `FT8`, etc. | Switch mode |
+| `SPOT` | | Post {{< term "POTA" >}} self-spot |
+| `SPOT QRT` | `QRT` | Post QRT spot |
+| `SPOT QSY 14.062` | | Post spot with comment |
+| `RBN` | | Show your {{< term "RBN" >}} and {{< term "POTA" >}} spots |
+| `POTA` | | Show active {{< term "POTA" >}} spots |
+| `P2P` | | Find park-to-park opportunities |
+| `SOLAR` | | Show solar conditions |
+| `WEATHER` | | Show weather conditions |
+| `MAP` | | Show session {{< term "QSO" >}}s on a map |
+| `WEBSDR` | `SDR`, `REC`, `RECORD`, `SWL` | Open WebSDR receiver |
+| `NOTE <text>` | | Add timestamped note |
+| `RIG` | | Edit session equipment |
+| `HIDDEN` | `DELETED` | View deleted {{< term "QSO" >}}s |
+| `CHECKLIST` | `CL` | Open CW Field Guide checklist |
+| `MANUAL` | | Open radio manual |
+| `HELP` | | Show available commands |
 
 ## Band Plan Validation
 
