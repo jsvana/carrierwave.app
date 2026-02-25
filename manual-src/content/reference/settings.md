@@ -197,6 +197,38 @@ Filter spots by distance from your location: 100-2000 miles.
 
 Sort spots by **Recent** (newest first) or **Frequency** (band order).
 
+## Brag Sheets
+
+Configure period brag sheets (weekly, monthly, all-time stats cards).
+
+### General
+
+| Setting | Description | Default |
+|---------|-------------|---------|
+| **Include Map** | Show world map with contact arcs on brag sheets | On |
+| **Include Equipment Summary** | Show primary rig and antenna | Off |
+| **Gold Record Badges** | Highlight stats where an all-time record was set during the period | On |
+
+### Per-Period Configuration
+
+Select the **Weekly**, **Monthly**, or **All Time** tab to configure each period independently.
+
+| Setting | Description |
+|---------|-------------|
+| **Enabled Stats** | Toggle individual stats on or off by category |
+| **Stat Order** | Drag to reorder stats within the card |
+| **Hero Stats** | Star up to 4 stats to feature in the hero row |
+| **Apply Preset** | Replace current selection with a curated preset (General, DXer, QRP, Activator, Contester, CW Enthusiast, Show Everything) |
+| **Reset to Default** | Restore the default configuration for this period |
+
+Long-press a period tab to copy its configuration to another period.
+
+### Pro Stats (requires Professional Statistician Mode)
+
+When Professional Statistician Mode is enabled (Settings → POTA), an additional **Pro Stats** category appears in the stat picker with charts, box plots, distributions, and derived metrics. Two additional presets are also available: **Analyst** and **Full Statistician**.
+
+See [Period Brag Sheets](/reference/brag-sheets/) for the full list of available stats and pro stats.
+
 ## Navigation
 
 Customize the app's navigation bar and default behavior.
