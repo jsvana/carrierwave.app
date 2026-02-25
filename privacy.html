@@ -179,24 +179,34 @@
 
     <div class="container">
         <h1>Privacy Policy</h1>
-        <p class="updated">Last updated: February 17, 2026</p>
+        <p class="updated">Last updated: February 25, 2026</p>
 
         <h2>What Carrier Wave Does</h2>
-        <p>Carrier Wave is an amateur radio QSO logging app. It helps you record contacts (QSOs), track POTA activations, and optionally sync your log with third-party services.</p>
+        <p>Carrier Wave is an amateur radio QSO logging app for iOS. It helps you record contacts (QSOs), track POTA activations, and optionally sync your log with third-party services.</p>
 
         <h2>Data We Collect</h2>
         <p>Carrier Wave collects only the data you provide:</p>
         <ul>
             <li><strong>Callsign and name</strong> &mdash; your amateur radio callsign and operator name, entered during setup</li>
             <li><strong>QSO logs</strong> &mdash; contact records you create (callsign, band, mode, timestamps, signal reports, park references, grid squares)</li>
-            <li><strong>Location</strong> &mdash; used only to determine your Maidenhead grid square for logging; not stored or transmitted beyond grid derivation</li>
-            <li><strong>Microphone audio</strong> &mdash; used for real-time CW (Morse code) decoding; audio is processed on-device and never recorded or transmitted</li>
-            <li><strong>Photos</strong> &mdash; session photos you attach are stored locally on your device</li>
+            <li><strong>Location</strong> &mdash; used only to determine your Maidenhead grid square for logging; not stored or transmitted beyond grid derivation. Location access requires your explicit permission and can be revoked at any time in iOS Settings</li>
+            <li><strong>Microphone audio</strong> &mdash; used for real-time CW (Morse code) decoding; audio is processed entirely on-device and is never recorded, stored, or transmitted. Microphone access requires your explicit permission</li>
+            <li><strong>Photos</strong> &mdash; session photos you attach are stored locally on your device. Photo library access requires your explicit permission</li>
+        </ul>
+
+        <h2>Data We Do Not Collect</h2>
+        <p>Carrier Wave does not collect or have access to:</p>
+        <ul>
+            <li>Device identifiers (IDFA, IDFV, or other unique identifiers)</li>
+            <li>Usage or behavioral analytics</li>
+            <li>Browsing or search history</li>
+            <li>Contacts, messages, or other personal data</li>
+            <li>Financial or payment information (purchases are handled entirely by Apple)</li>
         </ul>
 
         <h2>Where Data Is Stored</h2>
-        <p>All QSO data is stored locally on your device using SwiftData. Credentials for third-party services are stored in the iOS Keychain. No data is stored on servers we operate, except as described under Community Features below.</p>
-        <p>If you enable iCloud sync, your QSO database syncs across your Apple devices through your iCloud account, subject to Apple's privacy policy.</p>
+        <p>All QSO data is stored locally on your device using SwiftData. Credentials for third-party services are stored in the iOS Keychain, Apple's secure credential storage. No data is stored on servers we operate, except as described under Community Features below.</p>
+        <p>If you enable iCloud sync, your QSO database syncs across your Apple devices through your iCloud account, subject to <a href="https://www.apple.com/legal/privacy/">Apple's privacy policy</a>.</p>
 
         <h2>Optional Cloud Sync</h2>
         <p>You may choose to sync your log with one or more third-party services. Carrier Wave only sends data to services you explicitly connect:</p>
@@ -207,25 +217,45 @@
             <li><strong>LoTW (Logbook of the World)</strong> &mdash; downloads confirmed QSOs from ARRL LoTW</li>
             <li><strong>Club Log</strong> &mdash; bidirectional QSO sync with your Club Log account</li>
         </ul>
-        <p>Each service has its own privacy policy. Carrier Wave acts as a client and transmits only QSO data necessary for the sync.</p>
+        <p>Each service has its own privacy policy. Carrier Wave acts as a client and transmits only QSO data necessary for the sync. No sync is enabled by default &mdash; you must explicitly connect each service.</p>
 
         <h2>Community Features (Optional)</h2>
-        <p>If you enable community features, your callsign and activity data (such as challenge participation, activity feed items, and friend connections) are stored on our activities server. You can delete your community account at any time from Settings, which permanently removes all your data from our server.</p>
+        <p>If you enable community features, your callsign and activity data (such as challenge participation, activity feed items, and friend connections) are stored on our activities server. Community features are disabled by default. You can delete your community account at any time from Settings, which permanently removes all your data from our server.</p>
 
         <h2>Analytics, Advertising, and Tracking</h2>
-        <p>Carrier Wave does not include any analytics SDKs, advertising frameworks, or tracking tools. We do not collect usage data, device identifiers, or behavioral information. There are no third-party SDKs in the app.</p>
+        <p>Carrier Wave does not include any analytics SDKs, advertising frameworks, or tracking tools. We do not collect usage data, device identifiers, or behavioral information. There are no third-party SDKs in the app. Carrier Wave does not participate in any advertising networks and does not use Apple's App Tracking Transparency framework because we do not track users.</p>
 
         <h2>Data Sharing</h2>
-        <p>We do not sell, rent, or share your data with third parties. Data is only transmitted to services you explicitly choose to connect.</p>
+        <p>We do not sell, rent, or share your data with third parties. Data is only transmitted to services you explicitly choose to connect. We do not share data with data brokers or advertising networks.</p>
 
-        <h2>Data Deletion</h2>
-        <p>You can delete all QSO data from Settings at any time. If you use community features, you can delete your account from Settings &gt; Activities, which removes all server-side data. Uninstalling the app removes all local data.</p>
+        <h2>Data Security</h2>
+        <p>We take reasonable measures to protect your data:</p>
+        <ul>
+            <li>All data is stored locally on your device using iOS platform security</li>
+            <li>Third-party service credentials are stored in the iOS Keychain, which uses hardware-backed encryption</li>
+            <li>All network communication with third-party services uses HTTPS encryption</li>
+            <li>Audio from CW decoding is processed in real-time on-device and never leaves your device</li>
+        </ul>
+
+        <h2>Data Retention and Deletion</h2>
+        <p>You can delete all QSO data from Settings at any time. If you use community features, you can delete your account from Settings &gt; Activities, which immediately and permanently removes all server-side data. Uninstalling the app removes all local data from your device. iCloud data can be managed through your iCloud account settings.</p>
+
+        <h2>Your Rights</h2>
+        <p>Because Carrier Wave stores data locally on your device, you have direct control over your data at all times. You can:</p>
+        <ul>
+            <li>View all data stored by the app within the app itself</li>
+            <li>Export your data at any time</li>
+            <li>Delete any or all of your data from Settings</li>
+            <li>Revoke permissions (location, microphone, photos) at any time in iOS Settings</li>
+            <li>Disconnect from any third-party service at any time</li>
+        </ul>
+        <p>If you are a resident of California, the European Economic Area, or another jurisdiction with applicable privacy laws, you may have additional rights including the right to access, correct, or delete personal data. Because we store data locally on your device and do not maintain server-side user accounts (outside of optional community features), these rights are exercisable directly through the app.</p>
 
         <h2>Children</h2>
-        <p>Carrier Wave is not directed at children under 13. We do not knowingly collect personal information from children.</p>
+        <p>Carrier Wave is not directed at children under 13. We do not knowingly collect personal information from children under 13. If you believe a child under 13 has provided us with personal information through community features, please contact us and we will delete it.</p>
 
         <h2>Changes</h2>
-        <p>We may update this policy from time to time. Changes will be posted on this page with an updated date.</p>
+        <p>We may update this policy from time to time. Changes will be posted on this page with an updated date. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
 
         <h2>Contact</h2>
         <p>Questions about this privacy policy? Reach out on the <a href="https://discord.gg/PqubUxWW62">Carrier Wave Discord</a> or email <a href="mailto:privacy@carrierwave.app">privacy@carrierwave.app</a>.</p>
