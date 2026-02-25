@@ -199,12 +199,19 @@ When spots are detected in the background, a compact banner appears showing:
 
 ### Persisted Spots
 
-{{< term "RBN" >}} and {{< term "POTA" >}} spots detected during your session are saved:
+{{< term "RBN" >}} and {{< term "POTA" >}} spots detected during your session are saved and displayed in an expandable **Recorded Spots** section in the session detail view.
 
-- Displayed in the session detail view
-- POTA spots highlighted
-- RBN spots collapsed by region for easier scanning
-- Provides a historical record of propagation during your activation
+The recorded spots use the same aggregation as the live Logger spot view:
+
+- **Human spots first** — POTA spots appear before RBN spots
+- **Deduplication** — Same callsign + band merged, with POTA as the preferred source
+- **Band grouping** — Spots organized by band
+- **RBN region collapsing** — Consecutive RBN spots grouped by region
+- **Age color coding and badges** — SELF, DUPE, TODAY, PREV indicators preserved from capture time
+
+Tap the section header to expand or collapse the list. This provides a historical record of propagation during your activation — review which receivers heard you, on which bands, and at what signal strength.
+
+See [POTA Activation Detail — Recorded Spots](/reference/pota/#recorded-spots) for full details.
 
 ## Solar & Weather Conditions
 
