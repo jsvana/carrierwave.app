@@ -170,7 +170,7 @@ Tap a session to see:
 - Full equipment list
 - Attached photos
 - Notes and observations
-- Persisted spots from the session
+- Recorded spots (expandable, aggregated by band with deduplication)
 - Complete QSO list with expand-to-see-all-fields
 - Edit button (modifies park reference, date, notes)
 - Statistics section (when Professional Statistician Mode is enabled)
@@ -324,6 +324,39 @@ If you recorded audio during the session, a compact inline player shows the wave
 - Solar gauge (SFI, A-index, K-index)
 - Weather badge (temperature, conditions icon)
 - Tap for full solar and weather details
+
+### Recorded Spots
+
+An expandable section displays all {{< term "RBN" >}} and {{< term "POTA" >}} spots captured during the session, aggregated using the same logic as the live Logger spot system.
+
+**Tap the section header** to expand or collapse the spot list.
+
+#### Aggregation
+
+Recorded spots are merged and organized identically to the Logger's live spot view:
+
+- **Human spots first** — POTA spots (posted by hunters) appear before RBN spots
+- **Deduplication** — When the same callsign appears on the same band in both POTA and RBN data, the spots are combined with POTA as the preferred source
+- **Band grouping** — Spots organized by band for easy scanning
+- **RBN region collapsing** — Consecutive RBN spots from the same region are collapsed into expandable groups
+
+#### Visual Indicators
+
+Each spot row displays the same visual indicators used in the live Logger:
+
+- **Age color coding** — Green (<2 min), Blue (2–10 min), Orange (10–30 min), Gray (>30 min), based on the spot's age at time of capture
+- **SELF** — The spotted station matches your callsign
+- **DUPE** — Already worked on the same band and date
+- **TODAY** — Worked on a different band the same day
+- **PREV** — Worked in a previous session
+
+#### Propagation Review
+
+Because spots are persisted with timestamps and signal data, the recorded spots section serves as a historical record of propagation during your activation. Use it to:
+
+- Review which {{< term "RBN" >}} receivers heard your signal and at what {{< term "SNR" >}}
+- See which bands were active and when
+- Correlate spot activity with your QSO rate and band changes
 
 ### Activation Map
 
