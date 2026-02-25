@@ -225,6 +225,7 @@ Carrier Wave's share cards are designed to look great on social media platforms:
 
 ## See Also
 
+- [Period Brag Sheets](/reference/brag-sheets/) — Configurable weekly, monthly, and all-time stats cards
 - [POTA (Parks on the Air)](/reference/pota/) — Learn about POTA activations and how they integrate with brag sheets
 - [Activity Log](/reference/activity-log/) — Understand how daily activity is tracked and shared
 - [Logs & Search](/reference/logs-search/) - Browse sessions and QSO history
