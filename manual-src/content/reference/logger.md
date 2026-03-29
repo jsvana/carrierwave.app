@@ -47,10 +47,25 @@ Configure callsign prefix/suffix for portable operations:
 - Prefix: `I/W6JSV` (international)
 - Suffix: `/P` (portable), `/M` (mobile), `/MM` (maritime mobile), `/AM` (aeronautical mobile), or custom
 
+**Session QSO Comment:**
+
+Set an optional comment that is automatically prepended to every QSO's notes when logged during this session. Useful for consistent contest exchanges or activation notes across all contacts.
+
 **Wizard Options:**
 
 - **Save as Defaults** - Remember these settings for next time
+- **Save as Template** - Save this configuration as a named template for quick reuse
 - **Skip wizard next time** - Jump straight to logging with saved defaults
+
+### Session Templates
+
+Save session configurations as named templates for quick reuse. Templates store mode, frequency, activation type, equipment, and other wizard settings.
+
+- **Save** a template from the session start wizard
+- **Load** a template to pre-fill the wizard with saved settings
+- **Delete** templates you no longer need
+
+Templates are separate from "Save as Defaults" — you can have multiple named templates for different operating scenarios (e.g., "POTA CW", "Contest SSB", "FT8 Portable").
 
 ### Hunt-First Flow
 
@@ -198,8 +213,14 @@ Type commands in the callsign field to control your session:
 | `SPOT` | Post {{< term "POTA" >}} self-spot |
 | `SPOT QRT` | Post spot with "QRT" comment |
 | `SPOT QSY 14.062` | Post spot with custom comment |
+| `SPOT <message> REPEAT <minutes>` | Set custom auto-spot message and interval |
+| `SPOT STOP` | Cancel repeating spot timer |
 
 **Alias:** `QRT` for `SPOT QRT`.
+
+### SMS Spotting
+
+When you're off-grid with no data connection, Carrier Wave can spot your POTA or SOTA activation via text message (SMS). This sends a spot to the POTA/SOTA network through an SMS gateway, ensuring hunters can find you even without cellular data or WiFi.
 
 ### Spot Monitoring
 
@@ -431,6 +452,10 @@ Shows:
 **No Active Session:**
 - Green "Start Session" button
 
+### Edit Session Callsign
+
+Change the station callsign for an existing session from the session detail menu. This updates the callsign on all QSOs in the session — useful when you realize you logged under the wrong callsign or forgot to set a portable prefix.
+
 ### Delete Session
 
 Hides all {{< term "QSO" >}}s and cleans up spots and photos.
@@ -537,7 +562,7 @@ Success haptic (gentle bump) when logging a {{< term "QSO" >}}.
 ## See Also
 
 - [FT8 Operating Suite](/reference/ft8/) - FT8 waterfall, decoding, and TX control
-- [BLE Radio Control](/reference/radio-control/) - Frequency and mode sync with your radio
+- [Radio Control](/reference/radio-control/) - Frequency and mode sync with your radio
 - [POTA Activations](/reference/pota/) - Activation tracking and park management
 - [Spot Monitoring](/reference/spots/) - {{< term "RBN" >}}, {{< term "POTA" >}}, and P2P spots
 - [Activity Log](/reference/activity-log/) - Daily QSO tracking for hunters

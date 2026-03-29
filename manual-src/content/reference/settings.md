@@ -106,11 +106,18 @@ Carrier Wave integrates with multiple amateur radio services for callsign lookup
 **Features:**
 - Bidirectional {{< term "QSO" >}} sync
 
-## BLE Radio Control
+## Radio Control
 
-Configure Bluetooth Low Energy radio control for frequency and mode sync between your radio and Carrier Wave.
+Configure radio control for frequency and mode sync between your radio and Carrier Wave via BLE or WiFi.
 
-### Device Scanning
+### Transport Selection
+
+Choose **BLE** (Bluetooth Low Energy) or **WiFi** as the connection transport.
+
+- **BLE** — Works with all supported protocols via built-in Bluetooth or BLE-to-serial adapters
+- **WiFi** — Connect to Icom radios with built-in WiFi (IC-705, etc.) via Access Point or Station mode
+
+### Device Scanning (BLE)
 
 Tap **Scan for Radios** to discover nearby BLE-enabled radios and interfaces. Carrier Wave displays:
 
@@ -118,30 +125,29 @@ Tap **Scan for Radios** to discover nearby BLE-enabled radios and interfaces. Ca
 - **Connection status** (available, paired, connected)
 - **Protocol type** detected (if auto-detectable)
 
+### WiFi Configuration
+
+For WiFi transport:
+
+1. Join your radio's WiFi network (AP mode) or ensure both devices are on the same network (Station mode)
+2. Enter the radio's IP address
+3. Select the protocol (Icom CI-V)
+
 ### Protocol Selection
 
 Select the communication protocol matching your radio:
 
-| Protocol | Radios |
-|----------|--------|
-| **Icom CI-V** | Icom IC-705, IC-7300, IC-7610, and other CI-V radios |
-| **Kenwood/Elecraft** | Kenwood TS-890S, Elecraft KX2/KX3/K4 (text command protocol) |
-| **Yaesu CAT** | Yaesu FT-891, FT-991A, FTDX10 (CAT command set) |
+| Protocol | Radios | Transports |
+|----------|--------|------------|
+| **Icom CI-V** | Icom IC-705, IC-7300, IC-7610, and other CI-V radios | BLE, WiFi |
+| **Kenwood/Elecraft** | Kenwood TS-890S, Elecraft KX2/KX3/K4 (text command protocol) | BLE |
+| **Yaesu CAT** | Yaesu FT-891, FT-991A, FTDX10 (CAT command set) | BLE |
 
 ### CI-V Address Configuration
 
 For Icom radios, configure the CI-V address (default `0x94` for IC-705). Enter the hex address matching your radio's CI-V setting.
 
-### Connection Setup
-
-1. Enable Bluetooth on your iOS device
-2. Go to **Settings -> Radio Control**
-3. Tap **Scan for Radios**
-4. Select your radio or BLE interface
-5. Choose the correct protocol
-6. Carrier Wave connects and begins frequency/mode sync
-
-See [BLE Radio Control](/reference/radio-control/) for full details.
+See [Radio Control](/reference/radio-control/) for full details.
 
 ## iCloud Sync
 
@@ -229,7 +235,7 @@ Enable background polling for solar conditions ({{< term "SFI" >}}, {{< term "A-
 
 Configure need categories for the [Smart Spot Needs](/reference/smart-needs/) system:
 
-- **Enable/disable individual need categories** (DXCC, WAS, POTA, WWFF, Challenge, Custom)
+- **Enable/disable individual need categories** (DXCC, WAS, POTA, WWFF, Custom)
 - **Custom patterns** - Define your own matching rules
 - **Notification cooldown** - Set minimum time between alerts for the same need (default: 30 minutes)
 - **HamAlert export** - Generate a HamAlert trigger list from your needs configuration
@@ -361,6 +367,31 @@ Manage favorite WebSDR receivers. Search and sort by proximity to your location.
 
 Add custom WebSDR receivers by entering host and port (advanced mode).
 
+## Experiments
+
+Manage experimental features in **Settings -> Experiments**. Experimental features are in active development and may have rough edges.
+
+### Feature List
+
+Each feature shows:
+
+- **Name and description**
+- **Maturity badge** — Alpha (red) or Beta (orange)
+- **Enable/disable toggle**
+
+### Hidden Features
+
+Some early-stage features are hidden by default and don't appear in the Experiments list until enabled. These are typically tab-based features (Events, CW Transcription) that require explicit opt-in.
+
+### Maturity Levels
+
+- **Beta** — Feature-complete but may have edge cases. Safe to try.
+- **Alpha** — Under active development. May have missing functionality or data-loss risk.
+
+### RST Parse Order
+
+Option to parse sent RST first instead of received when entering quick-entry RST reports. Configure in **Settings -> Logger -> RST Parse Order**. Applies to both the Logger and Activity Log hunter entry.
+
 ## Developer / Advanced
 
 Advanced settings for debugging, troubleshooting, and one-time repairs.
@@ -434,7 +465,7 @@ View credits for third-party libraries used in Carrier Wave.
 
 - [Service Sync Flow](/reference/sync-flow/) - How and when syncing works
 - [iCloud Sync](/reference/icloud/) - Cross-device synchronization
-- [BLE Radio Control](/reference/radio-control/) - Radio connection details
+- [Radio Control](/reference/radio-control/) - Radio connection details
 - [Logger](/reference/logger/) - QSO entry and session management
 - [POTA Activations](/reference/pota/) - Park activation features
 - [Smart Spot Needs](/reference/smart-needs/) - Need-based spot matching

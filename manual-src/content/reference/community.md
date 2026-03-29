@@ -5,7 +5,7 @@ weight: 10
 showToc: true
 ---
 
-Carrier Wave's community features let you connect with friends, join clubs, track achievements, and compete in challenges.
+Carrier Wave's community features let you connect with friends, join clubs, and track achievements.
 
 ## Community Account
 
@@ -30,7 +30,7 @@ The app automatically registers your account using your station {{< term "callsi
 
 The **Enable community features** toggle in Settings -> Activities controls your discoverability:
 
-- **On** - Your {{< term "callsign" >}} appears in friend search and you can participate in challenges and clubs
+- **On** - Your {{< term "callsign" >}} appears in friend search and you can participate in clubs
 - **Off** - You remain hidden from search but retain your local data
 
 ### Account Deletion
@@ -41,7 +41,7 @@ To permanently delete your community account:
 2. Scroll to **Delete Community Account**
 3. Confirm deletion
 
-This removes all your community data from the server, including challenge progress, friends, and activity history. The deletion cascades to all related records. This action cannot be undone.
+This removes all your community data from the server, including friends and activity history. The deletion cascades to all related records. This action cannot be undone.
 
 ### Community Features Onboarding
 
@@ -50,8 +50,7 @@ When you first enable community features, a guided onboarding flow walks you thr
 1. **Account creation** - Registers your callsign with the activities server
 2. **Friend discovery** - Suggests friends based on your QSO history
 3. **Club detection** - Automatically identifies clubs you belong to via Polo notes
-4. **Challenge browse** - Shows active challenges you can join
-5. **Privacy settings** - Confirms your visibility preferences
+4. **Privacy settings** - Confirms your visibility preferences
 
 This onboarding ensures you're set up to get the most from community features immediately.
 
@@ -170,8 +169,6 @@ Club-level statistics provide aggregate data about your club's activity:
 - **Active members** who logged QSOs recently
 - **Top operators** leaderboard by QSO count
 - **Band distribution** showing the club's collective operating patterns
-- **Challenge participation** showing how many members are in active challenges
-
 ### Membership
 
 Club membership is determined by Polo notes lists configured on the activities server. Contact a club admin to add your {{< term "callsign" >}} to the list.
@@ -220,87 +217,6 @@ The feed auto-refreshes:
 - Immediately when the Activity tab appears
 - Every 60 seconds while the tab is visible
 - When you tap the refresh button in the toolbar
-
-## Challenges
-
-Challenges are community events that encourage specific types of operating activity.
-
-### Browsing Challenges
-
-Open the **Activity** tab to see:
-
-- **Active challenges** - Challenges you're currently participating in
-- **Browse** button - View available challenges you can join
-- **Completed** - Finished challenges with your final standing
-
-### Challenge Types
-
-Challenges vary in their goals:
-
-- **QSO count** - Log a specific number of contacts in a time period
-- **Band** - Work specific bands
-- **Mode** - Focus on {{< term "CW" >}}, digital, phone, etc.
-- **Geographic** - Work specific states, countries, or {{< term "grid square" >}}s
-- **POTA** - Activate or hunt parks
-
-### Joining Challenges
-
-1. Tap **Browse** in the Challenges section
-2. Tap a challenge to preview rules and requirements
-3. Tap **Join** to participate
-
-Existing QSOs may count retroactively if they meet the challenge criteria and fall within the challenge time window.
-
-### Challenge Rules
-
-Each challenge defines:
-
-- **Start and end dates** - The time window when QSOs count
-- **Qualifying criteria** - What makes a {{< term "QSO" >}} eligible (band, {{< term "mode" >}}, location, etc.)
-- **Scoring** - How points are calculated
-- **Categories** - Different entry classes (if applicable)
-
-Read the rules carefully before joining. Not all QSOs may count toward the challenge.
-
-### Progress Tracking
-
-Once joined, the challenge card shows:
-
-- Current progress (QSOs, points, or custom metric)
-- Goal and completion percentage
-- Time remaining
-- Your rank among participants
-
-Progress updates automatically as you log contacts. No special logging mode is required - just log QSOs normally.
-
-### Leaderboards
-
-Each challenge has a leaderboard showing:
-
-- Top participants
-- Your current rank
-- Points or {{< term "QSO" >}} counts for each entry
-
-Leaderboards refresh periodically as participants log contacts.
-
-### Challenge History
-
-Completed challenges remain visible with:
-
-- Your final standing and rank
-- Qualifying QSOs that counted
-- Completion date
-
-### Leaving Challenges
-
-To leave an active challenge:
-
-1. Open the challenge detail view
-2. Tap the menu button (three dots)
-3. Select **Leave Challenge**
-4. Confirm
-
-Your progress is removed from the leaderboard but local data remains.
 
 ## Sharing
 

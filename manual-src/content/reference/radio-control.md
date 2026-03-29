@@ -1,28 +1,53 @@
 ---
-title: "BLE Radio Control"
-description: "Bluetooth radio connection, frequency/mode sync, and supported protocols"
+title: "Radio Control"
+description: "BLE and WiFi radio connection, frequency/mode sync, and supported protocols"
 weight: 6
 showToc: true
 ---
 
-Carrier Wave can connect to your radio via Bluetooth Low Energy (BLE) to synchronize frequency and mode between the Logger and your transceiver. This eliminates manual frequency entry and ensures your log always matches your radio's actual operating parameters.
+Carrier Wave can connect to your radio via Bluetooth Low Energy (BLE) or WiFi to synchronize frequency and mode between the Logger and your transceiver. This eliminates manual frequency entry and ensures your log always matches your radio's actual operating parameters.
 
 ## Overview
 
-BLE Radio Control provides:
+Radio Control provides:
 
 - **Automatic frequency sync** - Logger frequency updates when you tune the radio
 - **Mode sync** - Logger mode changes when you switch modes on the radio
 - **Bidirectional control** - Change frequency in the Logger and the radio follows
 - **Background operation** - Connection persists across app screens and during recording
 
+## Connection Transports
+
+Carrier Wave supports two connection transports:
+
+### Bluetooth Low Energy (BLE)
+
+Connect to radios with built-in Bluetooth or via third-party BLE-to-serial adapters. BLE is the default transport and works with all supported protocols.
+
+### WiFi
+
+Connect to Icom radios with built-in WiFi (e.g., IC-705) via Access Point or Station mode. The radio acts as a WiFi access point that your iOS device joins, or both devices connect to the same local network.
+
+**WiFi setup:**
+
+1. On your radio, enable WiFi and note the Access Point SSID and password (or configure Station mode for your local network)
+2. On your iOS device, join the radio's WiFi network
+3. In Carrier Wave, go to **Settings -> Radio** and select **WiFi** as the transport
+4. Enter the radio's IP address (default: `192.168.1.1` for AP mode)
+5. Carrier Wave connects via TCP and begins frequency/mode sync
+
+**WiFi advantages over BLE:**
+- More reliable connection (no BLE dropouts during TX)
+- Higher data throughput for scope/waterfall data (CW Sweep)
+- No pairing required — just network connectivity
+
 ## Supported Protocols
 
-Carrier Wave supports three radio control protocols via BLE serial interfaces:
+Carrier Wave supports three radio control protocols via BLE or WiFi:
 
 ### Icom CI-V
 
-The CI-V (Communication Interface V) protocol supports Icom radios:
+The CI-V (Communication Interface V) protocol supports Icom radios via BLE or WiFi:
 
 - **Supported radios:** IC-705, IC-7300, IC-7610, IC-7851, IC-9700, and other CI-V compatible models
 - **Commands:** Frequency read/write, mode read/write, S-meter read
@@ -47,11 +72,12 @@ Computer Aided Transceiver (CAT) protocol for Yaesu radios:
 
 ## Device Scanning
 
-### Starting a Scan
+### Starting a Scan (BLE)
 
-1. Go to **Settings -> Radio Control**
-2. Tap **Scan for Radios**
-3. Carrier Wave scans for BLE devices advertising serial port services
+1. Go to **Settings -> Radio**
+2. Select **BLE** as the transport
+3. Tap **Scan for Radios**
+4. Carrier Wave scans for BLE devices advertising serial port services
 
 ### Scan Results
 
@@ -129,9 +155,13 @@ When you change frequency in the Logger (via command, band picker, or spot tap):
 
 Sideband selection (LSB vs USB) follows band conventions and is handled automatically.
 
-## BLE Radio Settings
+## Radio Settings
 
-Configure radio control behavior in **Settings -> Radio Control**:
+Configure radio control behavior in **Settings -> Radio**:
+
+### Transport Selection
+
+Choose **BLE** or **WiFi** as the connection transport. WiFi is currently supported for Icom CI-V radios only.
 
 ### Protocol Selection
 
