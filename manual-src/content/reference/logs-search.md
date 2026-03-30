@@ -341,6 +341,14 @@ Sessions with WebSDR recordings show a microphone icon. Tap the session to:
 
 See [WebSDR Recording](/reference/websdr/) for details.
 
+### Import ADIF into Session
+
+Long-press any session to reveal the **Import ADIF** option. This lets you import an ADIF file directly into an existing session, merging the contacts with the session's existing QSOs.
+
+**Validation warnings:** If the imported ADIF contains QSOs with a different callsign or park reference than the session, Carrier Wave displays a warning before proceeding. You can choose to continue or cancel the import.
+
+This is useful when you have QSOs logged in another app during an activation and want to consolidate them into a single session.
+
 ### Session Detail
 
 Tap any session to view:

@@ -165,7 +165,11 @@ Carrier Wave maintains an in-memory cache of recently worked callsigns to provid
 
 ## Filtering
 
-The spot filtering system lets you narrow results by multiple criteria:
+The spot filtering system lets you narrow results by multiple criteria. Filters for **HUNT** (POTA/SOTA spots) and **P2P** (park-to-park) are **persistent** — your selections are saved in Settings and applied automatically each time you open the spot panel.
+
+### Active Filter Indicators
+
+When filters are active, the HUNT and P2P command icons appear **filled** instead of outlined, and a descriptive summary (e.g., "20m, CW, POTA only") appears below the command bar. This gives you instant visual confirmation that filtering is in effect.
 
 ### Source Filter
 
@@ -174,6 +178,14 @@ The spot filtering system lets you narrow results by multiple criteria:
 - **WWFF** - Show only WWFF spots
 - **RBN** - Show only RBN spots
 - **All** - Merged view (default)
+
+### Activity Filter (HUNT)
+
+Filter hunt spots by activity program:
+
+- **POTA** - Show only POTA activators
+- **SOTA** - Show only SOTA activators
+- **All** - Show all activity types (default)
 
 ### Band Filter
 
@@ -192,6 +204,14 @@ Multi-select mode filter including:
 - {{< term "FT8" >}}
 - {{< term "FT4" >}}
 - Other digital modes
+
+### Club Filter (HUNT)
+
+Filter hunt spots by club membership. Select one or more clubs to show only spots from members of those clubs. Requires club roster data to be loaded.
+
+### Friends Filter (HUNT)
+
+Toggle to show only spots from stations in your friends list.
 
 ### Age Filter
 

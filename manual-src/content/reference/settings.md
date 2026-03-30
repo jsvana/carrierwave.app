@@ -80,9 +80,11 @@ Carrier Wave integrates with multiple amateur radio services for callsign lookup
 
 ### Club Log
 
+**Status:** Coming soon. Club Log sync is not yet active — credentials can be configured but uploads and downloads are disabled until full integration is complete.
+
 **Authentication:** Email, app password, callsign, and API key.
 
-**Features:**
+**Features (planned):**
 - Bidirectional ADIF sync
 - Batch upload
 - Incremental date-based download
@@ -303,6 +305,23 @@ On iPad, all tabs are shown in the sidebar. Visibility changes are applied immed
 Select **System** (follows device), **Light**, **Dark**, or **Sunlight** mode.
 
 **Sunlight mode** forces light theme with boosted contrast for outdoor visibility in bright conditions.
+
+### Hunt Filter
+
+Configure persistent filters for the HUNT spot command. All selections are saved and applied automatically when opening the HUNT panel:
+
+- **Activity** - Filter by program (POTA, SOTA, or All)
+- **Band** - Multi-select band filter
+- **Mode** - Multi-select mode filter
+- **Club** - Select one or more clubs to show only their members' spots
+- **Friends** - Toggle to show only spots from your friends list
+
+### P2P Filter
+
+Configure persistent filters for the P2P (park-to-park) spot command:
+
+- **Band** - Multi-select band filter
+- **Mode** - Multi-select mode filter
 
 ## Units
 
