@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>iOS State of the Union — March 2026 | Carrier Wave</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0e0f11;
+      --bg2:       #131518;
+      --bg3:       #1a1d21;
+      --border:    #1f2328;
+      --border2:   #2a2f38;
+      --text:      #c9cdd6;
+      --text-dim:  #666c7a;
+      --text-xdim: #35393f;
+      --blue:      #4a8cff;
+      --blue2:     #3a7aee;
+      --white:     #f2f4f8;
+      --mono:      'IBM Plex Mono', monospace;
+      --sans:      'Outfit', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 60px;
+      background: rgba(14,15,17,0.82);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      text-decoration: none;
+      color: var(--white);
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-logo img { width: 28px; height: 28px; border-radius: 7px; }
+
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+
+    .nav-links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      background: var(--blue) !important;
+      color: #fff !important;
+      padding: 0.4rem 1rem;
+      border-radius: 8px;
+      font-family: var(--sans) !important;
+      font-size: 0.85rem !important;
+      font-weight: 600 !important;
+      letter-spacing: 0 !important;
+    }
+    .nav-cta:hover { background: var(--blue2) !important; }
+
+    /* ARTICLE */
+    .article-wrapper {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 7rem 2rem 5rem;
+    }
+
+    .article-meta {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .article-wrapper h1 {
+      font-family: var(--sans);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+
+    .article-wrapper h1 .blue { color: var(--blue); }
+
+    .article-lede {
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: var(--text-dim);
+      line-height: 1.75;
+      margin-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2.5rem;
+    }
+
+    .article-wrapper h2 {
+      font-family: var(--sans);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-top: 2.5rem;
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.01em;
+    }
+
+    .article-wrapper h3 {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .article-wrapper p {
+      margin-bottom: 1.2rem;
+      line-height: 1.8;
+    }
+
+    .article-wrapper ul {
+      margin-bottom: 1.2rem;
+      padding-left: 1.5rem;
+    }
+
+    .article-wrapper li {
+      margin-bottom: 0.5rem;
+      line-height: 1.7;
+    }
+
+    .article-wrapper strong { color: var(--white); font-weight: 600; }
+
+    .article-wrapper code {
+      font-family: var(--mono);
+      font-size: 0.85em;
+      background: var(--bg3);
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+      color: var(--blue);
+    }
+
+    .version-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      border: 1px solid var(--border2);
+      background: rgba(255,255,255,0.03);
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      margin-right: 0.5rem;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2.5rem 0;
+    }
+
+    /* FOOTER */
+    footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2rem 2.5rem;
+      border-top: 1px solid var(--border);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--text-xdim);
+    }
+
+    .footer-logo { font-family: var(--sans); font-weight: 700; font-size: 0.85rem; color: var(--text-dim); }
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links a { color: var(--text-xdim); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--text-dim); }
+    .footer-morse { font-family: var(--mono); font-size: 0.7rem; color: var(--text-xdim); letter-spacing: 0.12em; }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 1.2rem; }
+      .article-wrapper { padding: 6rem 1.2rem 3rem; }
+      footer { flex-direction: column; align-items: flex-start; gap: 0.8rem; padding: 1.5rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="/">
+    <img src="/icon.png" alt="" onerror="this.style.display='none'" />
+    Carrier Wave
+  </a>
+  <ul class="nav-links">
+    <li><a href="/">App</a></li>
+    <li><a href="/mission.html">Mission</a></li>
+    <li><a href="https://apps.apple.com/us/app/carrier-wave/id6758229084" class="nav-cta">Download</a></li>
+  </ul>
+</nav>
+
+<!-- ARTICLE -->
+<article class="article-wrapper">
+  <div class="article-meta">Blog &middot; March 31, 2026</div>
+
+  <h1>iOS State of the <span class="blue">Union</span></h1>
+
+  <p class="article-lede">
+    Two releases shipped in two weeks, a comprehensive manual rewrite, and an App Store launch that went live. Here's where Carrier Wave stands heading into April — and why you'll see us shift gears toward stabilization.
+  </p>
+
+  <h2>What shipped</h2>
+
+  <p>March was one of the most productive months since development started. Two point releases landed back-to-back:</p>
+
+  <h3>1.76.0 — Radio Control & Session Management</h3>
+
+  <ul>
+    <li><strong>WiFi radio control.</strong> Carrier Wave can now connect to your rig over WiFi in addition to Bluetooth LE. WiFi is more reliable during transmit (no BLE dropouts) and supports higher data throughput for scope and waterfall data. Icom CI-V radios like the IC-705 work in both Access Point and Station mode.</li>
+    <li><strong>Session templates.</strong> Save a session configuration — mode, frequency, equipment, activation type — as a named template and recall it with a tap. Separate from "Save as Defaults" so you can keep multiple setups for different operating scenarios.</li>
+    <li><strong>SMS spotting.</strong> For off-grid POTA and SOTA activations where you have cell service but no data, you can now self-spot via text message.</li>
+    <li><strong>Repeating auto-spot.</strong> <code>SPOT &lt;message&gt; REPEAT &lt;min&gt;</code> keeps your spot fresh on the network. <code>SPOT STOP</code> cancels it.</li>
+    <li><strong>Session QSO comments.</strong> Set a comment that gets prepended to every QSO's notes — useful for contest exchanges or consistent activation notes.</li>
+    <li><strong>Edit session callsign.</strong> Change the station callsign on an existing session and it propagates to all QSOs in that session.</li>
+    <li><strong>Experiments section in Settings.</strong> Alpha and beta features now get maturity badges so you know what to expect.</li>
+  </ul>
+
+  <h3>1.77.0 — Spot Filtering</h3>
+
+  <ul>
+    <li><strong>Persistent filters.</strong> HUNT and P2P filter selections now save across sessions. Active filters show filled icons and a descriptive summary (e.g., "20m, CW, POTA only").</li>
+    <li><strong>Club and friends filtering.</strong> In HUNT mode, filter spots to show only members of your clubs or people on your friends list.</li>
+    <li><strong>Activity filter.</strong> Narrow hunt spots by program — POTA, SOTA, or all.</li>
+    <li><strong>P2P band/mode filters.</strong> Multi-select band and mode filters for park-to-park spots.</li>
+    <li><strong>ADIF import into sessions.</strong> Long-press any session to import an ADIF file directly, merging contacts with validation warnings for callsign or park reference mismatches.</li>
+  </ul>
+
+  <h2>Beyond the app</h2>
+
+  <p>The two weeks weren't just code. A few things happened around the product:</p>
+
+  <ul>
+    <li><strong>App Store launch.</strong> Carrier Wave went live at $4.99. We updated the website, removed "Coming Soon" messaging, and pointed everything at the real App Store listing.</li>
+    <li><strong>Comprehensive manual rewrite.</strong> The documentation got a ground-up overhaul — 9 new reference pages (FT8, Radio Control, Activations, Contests, Smart Needs, Brag Sheets, Video Export, Events, Onboarding), and 17 existing pages updated. Three persona-specific paths guide new users, beginners, and power operators through different depths of the app.</li>
+    <li><strong>Challenges removed.</strong> We pulled the Challenges feature entirely. It wasn't adding enough value for the complexity it introduced, and we'd rather focus on the features operators actually use every day.</li>
+    <li><strong>Website cleanup.</strong> Removed open-source claims and GitHub links from the site to better reflect the current direction of the project.</li>
+  </ul>
+
+  <h2>Where we are</h2>
+
+  <p>Carrier Wave is at <span class="version-badge">v1.77.0</span> with a feature set that covers the full lifecycle of an operating session: rig control, logging, spotting, syncing, activations, contests, social features, and analytics. The app talks to QRZ, POTA, LoTW, HAMRS, eQSL, and HamAlert. It runs on iPhone, iPad, and Apple Watch.</p>
+
+  <p>That's a lot of surface area — and it's the right time to stop adding to it for a while.</p>
+
+  <hr class="divider" />
+
+  <h2>What's next: stabilization</h2>
+
+  <p>Starting in April, the focus shifts from new features to making everything that's already there rock solid. Concretely, that means:</p>
+
+  <ul>
+    <li><strong>Bug fixes over features.</strong> If it crashes, drops a connection, or loses data, that gets fixed first. New feature work takes a back seat.</li>
+    <li><strong>Sync reliability.</strong> With seven services connected, sync edge cases are the biggest source of user-reported issues. We're going to methodically work through the backlog.</li>
+    <li><strong>Performance.</strong> Large logs, long sessions, and map rendering all have room to get faster. Especially on older devices.</li>
+    <li><strong>Polish.</strong> Small UI inconsistencies, accessibility improvements, and the kind of fit-and-finish work that's hard to prioritize during a feature push.</li>
+  </ul>
+
+  <p>This doesn't mean zero new features forever — it means the bar for shipping something new goes up. If it's not a clear win for operators in the field, it can wait.</p>
+
+  <p>Thanks for using Carrier Wave. 73.</p>
+</article>
+
+<footer>
+  <span class="footer-logo">Carrier Wave</span>
+  <ul class="footer-links">
+    <li><a href="/privacy.html">Privacy</a></li>
+    <li><a href="/mission.html">Mission</a></li>
+  </ul>
+  <span class="footer-morse">-.-. .--</span>
+</footer>
+
+</body>
+</html>
