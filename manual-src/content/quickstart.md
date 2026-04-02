@@ -93,15 +93,15 @@ Carrier Wave goes deep. Here's what else is available:
 
 **Activations & Programs:**
 - [POTA Activations](/reference/pota/) — Park uploads, rove mode, rove stop batch grid editing, P2P hunting
-- [SOTA/WWFF Support](/reference/sota/) — Summit and flora/fauna reference tracking
-- [Agents on Air](/reference/aoa/) — AoA activity program with code exchange tracking
+- [SOTA/WWFF Support](/reference/activations/) — Summit and flora/fauna reference tracking
+- [Agents on Air](/reference/activations/) — AoA activity program with code exchange tracking
 - [Contests](/reference/contests/) — WA7BNM contest calendar with templates, Cabrillo export
 
 **Maps & Spots:**
 - [Azimuthal Map](/reference/map/) — Canvas-rendered projection with antenna pattern overlays and spots heatmap
 - [Smart Spot Needs](/reference/spots/) — Background engine matching spots to your DXCC/WAS/POTA needs, with HamAlert export
 - [Band Openings](/reference/dashboard/) — Per-band propagation conditions on your dashboard
-- [DXpedition Calendar](/reference/dxpeditions/) — Active DXpeditions from Ham365
+- [DXpedition Calendar](/reference/dashboard/) — Active DXpeditions from Ham365
 
 **Receivers & Digital:**
 - [WebSDR Integration](/reference/websdr/) — KiwiSDR receivers with recording, QSY detection, clip export
@@ -109,26 +109,26 @@ Carrier Wave goes deep. Here's what else is available:
 - [CW Transcription](/reference/cw-transcription/) — Real-time decoding with Goertzel filter
 
 **Sessions & Sharing:**
-- [Session Timeline & Replay](/reference/sessions/) — Map-based chronological QSO replay with slider
-- [Video Export](/reference/video/) — Generate highlight videos with map animation
+- [Session Timeline & Replay](/reference/logger/) — Map-based chronological QSO replay with slider
+- [Video Export](/reference/video-export/) — Generate highlight videos with map animation
 - [Brag Sheets](/reference/brag-sheets/) — Weekly/monthly/all-time shareable stat cards
-- [Share Cards](/reference/share-cards/) — Branded activation cards, daily activity cards, recording clips
-- [Band Plan Chart](/reference/band-plan/) — ARRL-style band allocation display
+- [Share Cards](/reference/brag-sheets/) — Branded activation cards, daily activity cards, recording clips
+- [Band Plan Chart](/reference/settings/) — ARRL-style band allocation display
 
 **Social & Community:**
-- [Clubs & Friends](/reference/social/) — Leaderboards, activity feeds, friends on air dashboard
-- [Challenges](/reference/challenges/) — Browse, join, and track challenge progress
+- [Clubs & Friends](/reference/community/) — Leaderboards, activity feeds, friends on air dashboard
+- [Challenges](/reference/community/#challenges) — Browse, join, and track challenge progress
 - [Events](/reference/events/) — Discover and submit ham radio events on a map
 
 **Platform Features:**
-- [Live Activity / Dynamic Island](/reference/live-activity/) — Active session on your lock screen
-- [watchOS Companion](/reference/watch/) — Solar, spots, stats, quick session start from your wrist
+- [Live Activity / Dynamic Island](/reference/widgets/) — Active session on your lock screen
+- [watchOS Companion](/reference/widgets/) — Solar, spots, stats, quick session start from your wrist
 - [Widgets](/reference/widgets/) — Solar conditions, spots, and stats on your home screen
 
 **Data & Backup:**
-- [Backup & Restore](/reference/backup/) — Manual backups with iCloud Drive mirroring
+- [Backup & Restore](/reference/icloud/) — Manual backups with iCloud Drive mirroring
 - [Search & Filters](/reference/logs-search/) — Query your log history with a powerful query language
-- [Professional Statistician Mode](/reference/statistics/) — Advanced box plots and distribution analysis
+- [Professional Statistician Mode](/reference/dashboard/) — Advanced box plots and distribution analysis
 
 For deeper understanding of logging concepts, see the [Beginner's Guide](/guide/).
 
