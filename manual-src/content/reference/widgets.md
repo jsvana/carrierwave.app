@@ -142,17 +142,17 @@ The widget reads from App Group UserDefaults, which the main app updates after e
 
 ## Radio Spots Widget
 
-The Radio Spots widget shows live {{< term "POTA" >}} and {{< term "RBN" >}} (Reverse Beacon Network) spots. It is available in medium and large sizes.
+The Radio Spots widget shows live {{< term "POTA" >}}, {{< term "SOTA" >}}, and {{< term "RBN" >}} (Reverse Beacon Network) spots. It is available in medium and large sizes.
 
 ### What It Shows
 
-- Live spots from {{< term "POTA" >}} and {{< term "RBN" >}}
-- Aligned table layout with fixed-width columns:
-  - {{< term "Callsign" >}}
-  - Frequency
-  - {{< term "Mode" >}}
-  - Park reference (for {{< term "POTA" >}} spots)
-  - Timestamp
+- Live spots from {{< term "POTA" >}}, {{< term "SOTA" >}}, and {{< term "RBN" >}}
+- **Activity type icon** (POTA tree, SOTA mountain, RBN beacon) on each row
+- Aligned table layout with progressive detail by widget size:
+  - **Small:** Activity icon, {{< term "band" >}}, and {{< term "mode" >}}
+  - **Medium:** Adds park/summit reference
+  - **Large:** Two-line layout with {{< term "callsign" >}}, frequency, and detail text
+- Signal strength info (for {{< term "RBN" >}} spots)
 
 ### Configuration
 
@@ -161,6 +161,7 @@ Long-press the widget to configure:
 **Source Filter:**
 - All sources
 - {{< term "POTA" >}} only
+- {{< term "SOTA" >}} only
 - {{< term "RBN" >}} only
 
 **Band Filter:**

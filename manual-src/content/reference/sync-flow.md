@@ -18,17 +18,27 @@ Sync runs automatically in several scenarios:
 
 Sync operations batch multiple QSOs for efficiency and respect service-specific rate limits with adaptive backoff. Activity detection triggers automatically on both live logging and sync downloads, creating activity items for new operations.
 
-## Sync Direction by Service
+## Sync Mode per Service
 
-| Service | Upload | Download |
-|---------|--------|----------|
-| QRZ.com | Yes - QSOs | Yes - QSOs, Callsign info |
-| POTA | Yes - Activations | No |
-| Ham2K LoFi | Yes - QSOs | Yes - QSOs |
-| LoTW | No | Yes - Confirmations |
-| Club Log | Yes - QSOs | Yes - QSOs |
-| eQSL | Yes - QSOs | Yes - Confirmations |
-| HAMRS | No | Yes - QSOs |
+Each service has a configurable **sync mode** that controls the direction of data flow:
+
+| Mode | Behavior |
+|------|----------|
+| **Bidirectional** | Upload and download (default for services that support it) |
+| **Upload Only** | Send QSOs to the service but don't download |
+| **Download Only** | Fetch from the service but don't upload |
+
+To change a service's sync mode, go to **Settings → Sync Services** and tap the service. The available modes depend on each service's capabilities:
+
+| Service | Supported Modes | Default |
+|---------|----------------|---------|
+| QRZ.com | Bidirectional, Upload Only, Download Only | Bidirectional |
+| POTA | Upload Only | Upload Only |
+| Ham2K LoFi | Bidirectional, Upload Only, Download Only | Bidirectional |
+| LoTW | Download Only | Download Only |
+| Club Log | Bidirectional, Upload Only, Download Only | Bidirectional |
+| eQSL | Bidirectional, Upload Only, Download Only | Bidirectional |
+| HAMRS | Download Only | Download Only |
 
 ## Service-Specific Behavior
 

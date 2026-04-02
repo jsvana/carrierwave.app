@@ -25,14 +25,29 @@ iCloud Sync keeps your Carrier Wave data synchronized across all your Apple devi
 - **WebSDR recordings** - Audio files remain on the recording device (too large for CloudKit)
 - **Session photos** - Stored locally (available via iCloud Drive backup mirror if enabled)
 
-## CKSyncEngine
+## Sync Engine
 
-Carrier Wave uses Apple's CKSyncEngine framework for iCloud synchronization. This provides:
+Carrier Wave offers two iCloud sync engines. You can switch between them at **Settings → iCloud → Sync Engine**.
+
+### CKSyncEngine (Default)
+
+Apple's built-in CKSyncEngine framework:
 
 - **Automatic conflict detection** at the record level
 - **Efficient delta sync** - only changed records are transferred
 - **Background sync** - updates happen without user intervention
 - **Offline queue** - changes accumulate while offline and sync when connectivity returns
+
+### Journal Sync Engine
+
+An alternative sync engine that batches changes into JSON journal entries and uses SQLite snapshots for initial device setup:
+
+- **Snapshot bootstrap** - new devices download a single SQLite snapshot instead of syncing thousands of individual records, dramatically reducing first-sync time
+- **Batched journals** - changes are grouped into journal entries (up to 100 operations per CloudKit record) for more efficient transfer
+- **Automatic snapshots** - a fresh snapshot is uploaded every 6 hours so new devices always start from a recent state
+- **Cross-device setting** - toggling the sync engine on one device propagates the change to all devices via iCloud Key-Value Store
+
+The journal engine is ideal for users with large QSO databases (10,000+) where CKSyncEngine's per-record sync can be slow on initial setup.
 
 ### Synced Entities
 
