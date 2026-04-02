@@ -37,6 +37,7 @@ jobs:
           cp icon.png _site/
           cp CNAME _site/
           cp .nojekyll _site/
+          cp -r devlog _site/
 
           # Build Hugo manual
           hugo --minify -s manual-src -d $(pwd)/_site/manual
