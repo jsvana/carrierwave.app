@@ -624,6 +624,104 @@
     .hero-sub     { animation: fadeUp 0.5s 0.16s ease both; }
     .hero-actions { animation: fadeUp 0.5s 0.24s ease both; }
 
+    /* BLOG */
+    .blog-section {
+      border-top: 1px solid var(--border);
+      padding: 6rem 2rem;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .blog-post {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 2.5rem;
+    }
+
+    .blog-post-date {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--text-xdim);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+
+    .blog-post h3 {
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 1.2rem;
+    }
+
+    .blog-post p {
+      color: var(--text);
+      font-weight: 300;
+      font-size: 0.92rem;
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+
+    .blog-post p:last-child { margin-bottom: 0; }
+
+    .blog-post h4 {
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--white);
+      margin: 2rem 0 0.8rem;
+      letter-spacing: -0.01em;
+    }
+
+    .blog-post h5 {
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: var(--blue);
+      margin: 1.5rem 0 0.6rem;
+    }
+
+    .blog-post ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1rem;
+    }
+
+    .blog-post ul li {
+      color: var(--text);
+      font-weight: 300;
+      font-size: 0.88rem;
+      line-height: 1.7;
+      padding-left: 1.2rem;
+      position: relative;
+      margin-bottom: 0.4rem;
+    }
+
+    .blog-post ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.6em;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--blue);
+    }
+
+    .blog-post ul li strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    .blog-post hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+
     @media (max-width: 640px) {
       nav { padding: 0 1.2rem; }
       .nav-links li:not(:last-child) { display: none; }
@@ -700,6 +798,7 @@
   </a>
   <ul class="nav-links">
     <li><a href="#features">Features</a></li>
+    <li><a href="#blog">Blog</a></li>
     <li><a href="/mission.html">Mission</a></li>
     <li><a href="https://apps.apple.com/us/app/carrier-wave/id6758229084" class="nav-cta">Download</a></li>
   </ul>
@@ -860,6 +959,69 @@
     <span class="mode-chip lit">HamRS</span>
     <span class="mode-chip lit">PoLo</span>
     <span class="mode-chip lit">pota.app</span>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- BLOG -->
+<section class="blog-section" id="blog">
+  <p class="section-label">// Blog</p>
+  <div class="blog-post">
+    <div class="blog-post-date">March 31, 2026</div>
+    <h3>iOS State of the Union</h3>
+    <p>Hey folks! First, thanks everyone for giving our app a shot. Justin and I are so excited to finally be sharing it with people. We've loved making it and using it, and it's fulfilling to have folks be able to enjoy it with us.</p>
+    <p>We've shipped two releases recently. We've worked through a comprehensive manual rewrite, and we're finally live on the Apple App Store. We believe we're approaching a good point to pause major feature development and instead focus on stability.</p>
+
+    <h4>What shipped</h4>
+    <p>March was one of the most productive months since development started. Two point releases landed back-to-back:</p>
+
+    <h5>1.76.0 — Radio Control &amp; Session Management</h5>
+    <ul>
+      <li><strong>WiFi radio control.</strong> Carrier Wave can now connect to your rig over WiFi in addition to Bluetooth LE. WiFi is more reliable during transmit (no BLE dropouts) and supports higher data throughput for scope and waterfall data. Icom CI-V radios like the IC-705 work in both Access Point and Station mode.</li>
+      <li><strong>Session templates.</strong> Save a session configuration — mode, frequency, equipment, activation type — as a named template and recall it with a tap. Separate from "Save as Defaults" so you can keep multiple setups for different operating scenarios.</li>
+      <li><strong>SMS spotting.</strong> For off-grid POTA and SOTA activations where you have cell service but no data, you can now self-spot via text message.</li>
+      <li><strong>Repeating auto-spot.</strong> <code>SPOT &lt;message&gt; REPEAT &lt;min&gt;</code> keeps your spot fresh on the network. <code>SPOT STOP</code> cancels it.</li>
+      <li><strong>Session QSO comments.</strong> Set a comment that gets prepended to every QSO's notes — useful for contest exchanges or consistent activation notes.</li>
+      <li><strong>Edit session callsign.</strong> Change the station callsign on an existing session and it propagates to all QSOs in that session.</li>
+      <li><strong>Experiments section in Settings.</strong> Alpha and beta features now get maturity badges so you know what to expect.</li>
+    </ul>
+
+    <h5>1.77.0 — Spot Filtering</h5>
+    <ul>
+      <li><strong>Persistent filters.</strong> HUNT and P2P filter selections now save across sessions. Active filters show filled icons and a descriptive summary (e.g., "20m, CW, POTA only").</li>
+      <li><strong>Club and friends filtering.</strong> In HUNT mode, filter spots to show only members of your clubs or people on your friends list.</li>
+      <li><strong>Activity filter.</strong> Narrow hunt spots by program — POTA, SOTA, or all.</li>
+      <li><strong>P2P band/mode filters.</strong> Multi-select band and mode filters for park-to-park spots.</li>
+      <li><strong>ADIF import into sessions.</strong> Long-press any session to import an ADIF file directly, merging contacts with validation warnings for callsign or park reference mismatches.</li>
+    </ul>
+
+    <h4>Beyond the app</h4>
+    <p>The two weeks weren't just code. A few things happened around the product:</p>
+    <ul>
+      <li><strong>App Store launch.</strong> Carrier Wave went live at $4.99. We updated the website, removed "Coming Soon" messaging, and pointed everything at the real App Store listing.</li>
+      <li><strong>Comprehensive manual rewrite.</strong> The documentation got a ground-up overhaul — 9 new reference pages (FT8, Radio Control, Activations, Contests, Smart Needs, Brag Sheets, Video Export, Events, Onboarding), and 17 existing pages updated. Three persona-specific paths guide new users, beginners, and power operators through different depths of the app.</li>
+      <li><strong>Challenges removed.</strong> We pulled the Challenges feature entirely. It was duplicating in-app statistics and wasn't adding enough value for the complexity it introduced, and we'd rather focus on the features operators actually use every day.</li>
+      <li><strong>Website cleanup.</strong> Removed open-source claims and GitHub links from the site to better reflect the current direction of the project.</li>
+      <li><strong>Product rename.</strong> Carrier wave as you know it will become "Carrier Wave: Field". There are a few reasons for doing this, but mainly because Field is not the only program we're working on. For you Mac users, we're currently working on a desktop suite named "Carrier Wave: Sweep" but more to come on that later.</li>
+    </ul>
+
+    <h4>Where we are</h4>
+    <p>Carrier Wave: Field is at <strong>v1.77.0</strong> with a feature set that covers the full lifecycle of an operating session: rig control, logging, spotting, syncing, activations, contests, social features, and analytics. The app talks to QRZ, POTA, LoTW, HAMRS, and eQSL. It runs on iPhone, iPad, and Apple Watch.</p>
+    <p>That's a lot of surface area — and it's the right time to stop adding to it for a while.</p>
+
+    <hr />
+
+    <h4>What's next: stabilization</h4>
+    <p>Starting in April, the focus shifts from new features to making everything that's already there rock solid. Concretely, that means:</p>
+    <ul>
+      <li><strong>Bug fixes over features.</strong> If it crashes, drops a connection, or loses data, that gets fixed first. New feature work takes a back seat.</li>
+      <li><strong>Sync reliability.</strong> With seven services connected, sync edge cases are the biggest source of user-reported issues. We're going to methodically work through the backlog.</li>
+      <li><strong>Performance.</strong> Large logs, long sessions, and map rendering all have room to get faster. Especially on older devices.</li>
+      <li><strong>Polish.</strong> Small UI inconsistencies, accessibility improvements, and the kind of fit-and-finish work that's hard to prioritize during a feature push.</li>
+    </ul>
+    <p>This doesn't mean zero new features forever — it means the bar for shipping something new goes up. If it's not a clear win for operators in the field, it can wait.</p>
+    <p>Thanks for using Carrier Wave. 73.</p>
   </div>
 </section>
 
