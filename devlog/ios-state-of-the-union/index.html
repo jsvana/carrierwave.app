@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iOS State of the Union — Carrier Wave Devlog</title>
+<meta name="description" content="A look at the last five releases — v1.76 through v1.80 — covering radio control, spot filtering, equipment catalog, activation recommendations, and sync engine improvements.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-primary: #09090b;
+  --bg-elevated: #131316;
+  --bg-card: rgba(255, 255, 255, 0.03);
+  --bg-card-hover: rgba(255, 255, 255, 0.06);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-medium: rgba(255, 255, 255, 0.1);
+  --text-primary: #f0f0f2;
+  --text-secondary: rgba(240, 240, 242, 0.6);
+  --text-tertiary: rgba(240, 240, 242, 0.35);
+  --accent: #3B82F6;
+  --accent-glow: rgba(59, 130, 246, 0.15);
+  --accent-dim: rgba(59, 130, 246, 0.08);
+  --green: #34d399;
+  --green-dim: rgba(52, 211, 153, 0.08);
+  --orange: #F59E0B;
+  --purple: #A78BFA;
+  --red: #EF4444;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.015'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+/* -- Layout -- */
+.page-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* -- Navigation -- */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 0 24px;
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  background: rgba(9, 9, 11, 0.72);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+nav .nav-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 52px;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.nav-logo {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+}
+
+.nav-brand span {
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 400;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--text-primary);
+}
+
+.nav-links a.active {
+  color: var(--text-primary);
+}
+
+/* -- Article Header -- */
+.article-header {
+  padding: 140px 0 40px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-tertiary);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+  margin-bottom: 32px;
+  transition: color 0.2s;
+}
+
+.back-link:hover {
+  color: var(--accent);
+}
+
+.article-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--text-tertiary);
+}
+
+.article-tag {
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.article-tag.update { background: var(--green-dim); color: var(--green); }
+.article-tag.release { background: var(--accent-dim); color: var(--accent); }
+.article-tag.behind-the-scenes { background: rgba(167, 139, 250, 0.08); color: var(--purple); }
+
+.article-header h1 {
+  font-size: clamp(32px, 5vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* -- Article Body -- */
+.article-body {
+  padding: 0 0 80px;
+}
+
+.article-body p {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  font-weight: 300;
+  margin-bottom: 24px;
+}
+
+.article-body p:first-child {
+  font-size: 18px;
+  color: var(--text-primary);
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.article-body h2 {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 48px 0 16px;
+  color: var(--text-primary);
+}
+
+.article-body h3 {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 32px 0 12px;
+  color: var(--text-primary);
+}
+
+.article-body ul, .article-body ol {
+  margin: 0 0 24px 20px;
+  color: var(--text-secondary);
+  font-size: 16px;
+  line-height: 1.75;
+  font-weight: 300;
+}
+
+.article-body li {
+  margin-bottom: 8px;
+}
+
+.article-body code {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  padding: 2px 6px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+}
+
+.article-body blockquote {
+  margin: 24px 0;
+  padding: 16px 24px;
+  border-left: 2px solid var(--accent);
+  background: var(--accent-dim);
+  border-radius: 0 8px 8px 0;
+  font-size: 15px;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.article-body hr {
+  border: none;
+  border-top: 1px solid var(--border-subtle);
+  margin: 40px 0;
+}
+
+/* -- Divider -- */
+.article-divider {
+  border: none;
+  border-top: 1px solid var(--border-subtle);
+  margin: 0 0 48px;
+}
+
+/* -- Back to devlog (bottom) -- */
+.article-footer-nav {
+  padding: 0 0 80px;
+}
+
+.article-footer-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: none;
+  transition: gap 0.2s;
+}
+
+.article-footer-nav a:hover {
+  gap: 12px;
+}
+
+/* -- Footer -- */
+footer {
+  padding: 48px 0;
+  text-align: center;
+}
+
+.footer-brand {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.footer-sub {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.footer-links a {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+.footer-cw {
+  margin-top: 20px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-tertiary);
+  opacity: 0.5;
+  letter-spacing: 0.3em;
+}
+
+/* -- Animations -- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* -- Responsive -- */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .article-header {
+    padding: 110px 0 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-brand">
+        <img src="/icon.png" alt="Carrier Wave" class="nav-logo">
+        <span>Carrier Wave</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/#features">Features</a></li>
+        <li><a href="/mission.html">Mission</a></li>
+        <li><a href="/devlog/" class="active">Devlog</a></li>
+        <li><a href="https://apps.apple.com/us/app/carrier-wave/id6758229084">Download</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <header class="article-header">
+      <a href="/devlog/" class="back-link"><span aria-hidden="true">&larr;</span> All posts</a>
+      <div class="article-meta">
+        <span>2026-04-03</span>
+        <span class="article-tag update">Update</span>
+      </div>
+      <h1>iOS State of the Union</h1>
+    </header>
+
+    <article class="article-body">
+      <p>Hey folks! First, thanks everyone for giving our app a shot. Justin and I are so excited to finally be sharing it with people. We've loved making it and using it, and it's fulfilling to have folks be able to enjoy it with us.</p>
+
+      <p>We've shipped five releases recently. We've worked through a comprehensive manual rewrite, and we're finally live on the Apple App Store. Here's a look at everything that's landed since we went public.</p>
+
+      <h2>What shipped</h2>
+
+      <p>March and early April were some of the most productive weeks since development started. Five point releases landed:</p>
+
+      <h3>1.76.0 &mdash; Radio Control &amp; Session Management</h3>
+      <ul>
+        <li><strong>WiFi radio control.</strong> Carrier Wave can now connect to your rig over WiFi in addition to Bluetooth LE. WiFi is more reliable during transmit (no BLE dropouts) and supports higher data throughput for scope and waterfall data. Icom CI-V radios like the IC-705 work in both Access Point and Station mode.</li>
+        <li><strong>Session templates.</strong> Save a session configuration &mdash; mode, frequency, equipment, activation type &mdash; as a named template and recall it with a tap. Separate from &ldquo;Save as Defaults&rdquo; so you can keep multiple setups for different operating scenarios.</li>
+        <li><strong>SMS spotting.</strong> For off-grid POTA and SOTA activations where you have cell service but no data, you can now self-spot via text message.</li>
+        <li><strong>Repeating auto-spot.</strong> <code>SPOT &lt;message&gt; REPEAT &lt;min&gt;</code> keeps your spot fresh on the network. <code>SPOT STOP</code> cancels it.</li>
+        <li><strong>Session QSO comments.</strong> Set a comment that gets prepended to every QSO's notes &mdash; useful for contest exchanges or consistent activation notes.</li>
+        <li><strong>Edit session callsign.</strong> Change the station callsign on an existing session and it propagates to all QSOs in that session.</li>
+        <li><strong>Experiments section in Settings.</strong> Alpha and beta features now get maturity badges so you know what to expect.</li>
+      </ul>
+
+      <h3>1.77.0 &mdash; Spot Filtering</h3>
+      <ul>
+        <li><strong>Persistent filters.</strong> HUNT and P2P filter selections now save across sessions. Active filters show filled icons and a descriptive summary (e.g., &ldquo;20m, CW, POTA only&rdquo;).</li>
+        <li><strong>Club and friends filtering.</strong> In HUNT mode, filter spots to show only members of your clubs or people on your friends list.</li>
+        <li><strong>Activity filter.</strong> Narrow hunt spots by program &mdash; POTA, SOTA, or all.</li>
+        <li><strong>P2P band/mode filters.</strong> Multi-select band and mode filters for park-to-park spots.</li>
+        <li><strong>ADIF import into sessions.</strong> Long-press any session to import an ADIF file directly, merging contacts with validation warnings for callsign or park reference mismatches.</li>
+      </ul>
+
+      <h3>1.78.0 &mdash; Equipment Catalog &amp; FlexRadio</h3>
+      <ul>
+        <li><strong>Equipment Catalog.</strong> A structured equipment inventory replaces the old string-based lists. Browse a server-maintained catalog with detailed specs &mdash; bands, modes, portability, power &mdash; or add custom equipment. Fuzzy matching and &ldquo;did you mean?&rdquo; suggestions make finding your rig fast. Everything syncs via iCloud.</li>
+        <li><strong>Activation Recommendations (Alpha).</strong> An engine that analyzes propagation, proximity, award progress, gear freshness, park novelty, and community interest to suggest your next activation. A serendipity slider lets you balance practical vs. adventurous. Milestone gravity prioritizes award advancement when you're close.</li>
+        <li><strong>Log Scanning (Alpha).</strong> Point your camera at a handwritten paper log and import it. On-device Vision OCR recognizes text, feeds it through the quick entry parser, and lets you review before importing.</li>
+        <li><strong>FlexRadio support.</strong> LAN transport for FlexRadio Systems transceivers (FLEX-6400, FLEX-6600, FLEX-6700) with automatic discovery via Vita-49 broadcast and SmartLink remote access. That brings supported connection transports to three: BLE, WiFi, and LAN.</li>
+        <li><strong>WebSDR Instant Replay.</strong> Replay the last 15 seconds of captured audio with a button tap or Logger commands (<code>REPLAY</code>, <code>AGN</code>, <code>HUH</code>). Buffered playback doesn't interrupt the live connection.</li>
+        <li><strong>QRZ multi-callsign support.</strong> Operators with multiple callsigns can now associate separate QRZ API keys with each one. QSOs are automatically routed to the correct logbook based on the myCallsign field.</li>
+      </ul>
+
+      <h3>1.79.0 &mdash; Sync Engine &amp; Widgets</h3>
+      <ul>
+        <li><strong>Per-service sync modes.</strong> Each connected service &mdash; QRZ, LoFi, Club Log, eQSL &mdash; can now be set to Bidirectional, Upload Only, or Download Only. You control exactly what data flows where.</li>
+        <li><strong>Journal sync engine.</strong> A new iCloud sync option alongside CKSyncEngine. New devices download a single SQLite snapshot instead of syncing thousands of individual records, then catch up via batched journals. Ideal for large logs (10,000+ QSOs) where per-record sync is slow on initial setup. Automatic snapshots refresh every 6 hours.</li>
+        <li><strong>Widget redesign.</strong> Radio Spots widgets now support SOTA alongside POTA and RBN. New activity type icons (tree, mountain, beacon), progressive detail by widget size, and signal strength info for RBN spots.</li>
+      </ul>
+
+      <h3>1.80.0 &mdash; Session Detail &amp; IC-705 WiFi</h3>
+      <ul>
+        <li><strong>Session detail pane rework.</strong> The session detail view has been redesigned for a cleaner layout and faster access to the information that matters during and after an operating session.</li>
+        <li><strong>IC-705 WiFi rig control.</strong> Native WiFi CAT control for the Icom IC-705, letting you connect and control the radio over your local network without Bluetooth.</li>
+      </ul>
+
+      <h2>Beyond the app</h2>
+
+      <p>The last few weeks weren't just code. A few things happened around the product:</p>
+      <ul>
+        <li><strong>App Store launch.</strong> Carrier Wave went live at $4.99. We updated the website, removed &ldquo;Coming Soon&rdquo; messaging, and pointed everything at the real App Store listing.</li>
+        <li><strong>Comprehensive manual rewrite.</strong> The documentation got a ground-up overhaul &mdash; 9 new reference pages (FT8, Radio Control, Activations, Contests, Smart Needs, Brag Sheets, Video Export, Events, Onboarding), and 17 existing pages updated. Three persona-specific paths guide new users, beginners, and power operators through different depths of the app.</li>
+        <li><strong>Challenges removed.</strong> We pulled the Challenges feature entirely. It was duplicating in-app statistics and wasn't adding enough value for the complexity it introduced, and we'd rather focus on the features operators actually use every day.</li>
+        <li><strong>Website cleanup.</strong> Removed open-source claims and GitHub links from the site to better reflect the current direction of the project.</li>
+        <li><strong>Product rename.</strong> Carrier Wave as you know it will become &ldquo;Carrier Wave: Field&rdquo;. There are a few reasons for doing this, but mainly because Field is not the only program we're working on. For you Mac users, we're currently working on a desktop suite named &ldquo;Carrier Wave: Sweep&rdquo; but more to come on that later.</li>
+      </ul>
+
+      <h2>Where we are</h2>
+
+      <p>Carrier Wave: Field is at <strong>v1.80.0</strong> with a feature set that covers the full lifecycle of an operating session: rig control, logging, spotting, syncing, activations, contests, social features, and analytics. The app talks to QRZ, POTA, LoTW, HAMRS, and eQSL. It runs on iPhone, iPad, and Apple Watch.</p>
+
+      <p>That's a lot of surface area &mdash; and it's the right time to stop adding to it for a while.</p>
+
+      <hr />
+
+      <h2>What's next: stabilization</h2>
+
+      <p>Starting now, the focus shifts from new features to making everything that's already there rock solid. Concretely, that means:</p>
+      <ul>
+        <li><strong>Bug fixes over features.</strong> If it crashes, drops a connection, or loses data, that gets fixed first. New feature work takes a back seat.</li>
+        <li><strong>Sync reliability.</strong> With seven services connected, sync edge cases are the biggest source of user-reported issues. We're going to methodically work through the backlog.</li>
+        <li><strong>Performance.</strong> Large logs, long sessions, and map rendering all have room to get faster. Especially on older devices.</li>
+        <li><strong>Polish.</strong> Small UI inconsistencies, accessibility improvements, and the kind of fit-and-finish work that's hard to prioritize during a feature push.</li>
+      </ul>
+
+      <p>This doesn't mean zero new features forever &mdash; it means the bar for shipping something new goes up. If it's not a clear win for operators in the field, it can wait.</p>
+
+      <p>Thanks for using Carrier Wave. 73.</p>
+    </article>
+
+    <hr class="article-divider">
+
+    <div class="article-footer-nav">
+      <a href="/devlog/"><span aria-hidden="true">&larr;</span> Back to all posts</a>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-brand">Carrier Wave</div>
+    <div class="footer-sub">Amateur Radio Software & Hardware</div>
+    <div class="footer-links">
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="https://discord.gg/PqubUxWW62" target="_blank">Discord</a>
+    </div>
+    <div class="footer-cw">-.-. .--</div>
+  </footer>
+
+</div>
+
+</body>
+</html>
